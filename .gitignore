@@ -1,0 +1,30 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# 환경변수
+.env
+.env.*
+!.env.example
+
+# 빌드 산출물
+dist/
+build/
+.next/
+.output/
+
+# Cloudflare
+.wrangler/
+.dev.vars
+
+# 로그
+*.log
+
+# 에이전트 로컬 훅
+.agents/hooks.json
+.cursor/hooks.json
