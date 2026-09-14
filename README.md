@@ -34,5 +34,5 @@
 
 ## 현재 상태
 
-설계 단계. 확정 결정 27건. 기술 스택 선정 완료(Astro · Cloudflare Workers · Neon · Drizzle · Tailwind). 상세는 `docs/STATUS.md`.
+설계 단계. 확정 결정 34건, 설계 문서 v3. 기술 스택 선정 완료(Astro · Cloudflare Workers · Neon · Drizzle · Tailwind), 인증은 Better Auth 소셜 전용. 상세는 `docs/STATUS.md`.
 MVP 범위는 킷 위키 + 개인 블로그 + 계정. 커뮤니티 게시판은 제외.
