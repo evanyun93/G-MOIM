@@ -1,0 +1,41 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "g-moim",
+  "main": "@astrojs/cloudflare/entrypoints/server",
+  "compatibility_date": "2026-09-14",
+  "compatibility_flags": ["nodejs_compat"],
+
+  // 도메인 구매 전까지 workers.dev로 운영한다 (결정 #46).
+  // 구매 후 false로 바꾸고, 옛 주소는 301 리다이렉트 전용 Worker로 남긴다.
+  "workers_dev": true,
+  "preview_urls": false,
+
+  // 무료 플랜은 요청당 CPU 10ms 고정이라 limits.cpu_ms를 두지 않는다. 유료 전환 시 설정 (#20).
+
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1,
+    "traces": { "enabled": true }
+  },
+
+  // 차단 스위치 (#20). 값은 "true"일 때만 켜진다. 비어 있으면 꺼진 것으로 본다.
+  // 업로드·가입은 기능이 생기기 전까지 꺼둔다.
+  "vars": {
+    "UPLOADS_ENABLED": "false",
+    "SIGNUP_ENABLED": "false",
+    "SEARCH_ENABLED": "true",
+    "READ_ONLY": "false"
+  },
+
+  // IP 단위 폭주 차단 (#23). 부정확하므로 유저 쿼터 집계에 쓰지 않는다.
+  // 접근은 src/platform/rate-limit.ts에서만.
+  "ratelimits": [
+    {
+      "name": "RL_API",
+      "namespace_id": "1001",
+      "simple": { "limit": 60, "period": 60 }
+    }
+  ]
+
+  // Hyperdrive 바인딩은 Neon 연결을 만든 뒤 추가한다 (M0 3단계).
+}

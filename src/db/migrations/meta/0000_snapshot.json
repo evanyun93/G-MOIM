@@ -1,0 +1,135 @@
+{
+  "id": "604107ad-8277-4bf8-a02a-b7c137d6241d",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.daily_metrics": {
+      "name": "daily_metrics",
+      "schema": "",
+      "columns": {
+        "day": {
+          "name": "day",
+          "type": "date",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "worker_requests": {
+          "name": "worker_requests",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "rate_limited": {
+          "name": "rate_limited",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "uploads": {
+          "name": "uploads",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "upload_bytes": {
+          "name": "upload_bytes",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "heic_rejected": {
+          "name": "heic_rejected",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "uploads_mobile": {
+          "name": "uploads_mobile",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "uploads_desktop": {
+          "name": "uploads_desktop",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "signups": {
+          "name": "signups",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "posts_published": {
+          "name": "posts_published",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "active_authors": {
+          "name": "active_authors",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "comments": {
+          "name": "comments",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "pageviews_kit": {
+          "name": "pageviews_kit",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "pageviews_unit": {
+          "name": "pageviews_unit",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "pageviews_post": {
+          "name": "pageviews_post",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "visits_estimated": {
+          "name": "visits_estimated",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
