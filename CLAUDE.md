@@ -7,7 +7,7 @@
 
 **MVP 범위** — 킷 위키 + 개인 블로그(1단 댓글 포함, #38) + 계정. 커뮤니티 게시판은 제외.
 
-**현재 단계** — 설계 진행 중. 스택 선정(4.1) 완료 — Astro(#17), Drizzle + Hyperdrive(#21·#22), Tailwind v4(#27). 인증(4.6)은 Better Auth 소셜 전용(#28·#29). 에디터(1.1.3)는 Tiptap JSON(#31). 설계 문서 v3에 #34까지 반영. 애플리케이션 코드 없음.
+**현재 단계** — 설계 진행 중. 스택 선정(4.1) 완료 — Astro(#17), Drizzle + Hyperdrive(#21·#22), Tailwind v4(#27). 인증(4.6)은 Better Auth 소셜 전용(#28·#29). 에디터(1.1.3)는 Tiptap JSON(#31). 설계 문서 v3에 #34까지 반영. 로드맵(#41) 확정 — 다음은 M0 기반. 애플리케이션 코드 없음.
 
 ---
 
@@ -33,6 +33,7 @@
 | 인증, 계정 | 아래 절대 제약 + `docs/infra/인증선택지*` |
 | 타겟 유저, 기능 우선순위 판단 | `docs/product/타겟유저*` |
 | 공개 조건, 지표, 댓글 | `docs/product/성공기준*` |
+| 구현 순서, 마일스톤 완료 조건 | `docs/product/로드맵*` |
 | 킷 데이터 처리 | `docs/tasks/` 최신 지시서 |
 | 배포, 벤더 선택 | `docs/infra/` |
 | 쓰기 API, 업로드, 가입, 검색, 요청 제한 | `docs/infra/비용어뷰징방어*` 5장 체크리스트 |
@@ -152,6 +153,7 @@
 - 쿼리 도구는 Drizzle. **스키마 변경은 `drizzle-kit generate`로 SQL 파일을 만들어 커밋한 뒤 적용한다. `drizzle-kit push` 금지**
 - Worker의 DB 연결은 Hyperdrive + 표준 Postgres 드라이버. Neon 전용 드라이버를 쓰지 않는다. 연결 문자열은 `platform/` 어댑터에서만 읽는다
 - 요청 제한은 둘로 나눈다. IP 단위 폭주는 WAF + Rate Limiting 바인딩(어댑터 뒤), 유저별 쿼터는 DB 테이블. 바인딩은 부정확하므로 쿼터 집계에 쓰지 않는다
+- 검색은 **pg_trgm** (#40). pg_bigm은 Neon이 지원하지 않는다. 확장을 추가할 때는 Neon·RDS·Cloud SQL 지원 여부를 먼저 확인한다(#19)
 - Hyperdrive 무료 한도는 일 10만 쿼리다. 요청당 쿼리 수를 늘리는 코드(N+1)를 만들지 않는다
 
 ### 데이터
