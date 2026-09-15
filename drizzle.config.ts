@@ -10,6 +10,14 @@ try {
 const url = process.env.DATABASE_URL;
 if (!url) throw new Error('DATABASE_URL이 없다. .env.example을 복사해 .env를 만든다');
 
+// 로컬이 아닌 DB에 실수로 적용하지 않게 막는다. 운영 적용은 MIGRATE_REMOTE=yes를 명시한다.
+const host = new URL(url).hostname;
+const isLocal = ['127.0.0.1', 'localhost', '::1', 'db'].includes(host);
+if (!isLocal && process.env.MIGRATE_REMOTE !== 'yes') {
+  throw new Error('DATABASE_URL이 로컬 DB가 아니다. 운영에 적용하려면 MIGRATE_REMOTE=yes를 함께 지정한다');
+}
+console.error(`[drizzle] target: ${isLocal ? 'local' : 'REMOTE'}`);
+
 export default defineConfig({
   dialect: 'postgresql',
   schema: './src/db/schema.ts',

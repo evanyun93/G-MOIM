@@ -1,8 +1,8 @@
 # 로컬 개발용 Postgres. 운영(Neon)과 메이저 버전을 맞춘다 (복구 훈련도 같은 버전, 결정 #48).
-# Neon 프로젝트 생성 후 버전을 확인해 PG_MAJOR를 맞출 것.
+# Neon 프로젝트는 PostgreSQL 18 (2026-09-15 확인).
 services:
   db:
-    image: postgres:${PG_MAJOR:-17}
+    image: postgres:${PG_MAJOR:-18}
     environment:
       POSTGRES_USER: gmoim
       POSTGRES_PASSWORD: gmoim_local_only
@@ -10,7 +10,7 @@ services:
     ports:
       - "127.0.0.1:5432:5432"
     volumes:
-      - gmoim-db:/var/lib/postgresql/data
+      - gmoim-db:/var/lib/postgresql
 
 volumes:
   gmoim-db:
