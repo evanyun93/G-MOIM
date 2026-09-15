@@ -35,7 +35,16 @@
       "namespace_id": "1001",
       "simple": { "limit": 60, "period": 60 }
     }
-  ]
+  ],
 
-  // Hyperdrive 바인딩은 Neon 연결을 만든 뒤 추가한다 (M0 3단계).
+  // Worker → Neon 연결 풀 (결정 #22). Neon의 풀링 없는 주소로 만들었다(풀링은 Hyperdrive가 한다).
+  // 쿼리 캐싱은 끔 — 쿼터·9GB 차단이 60초 지난 값을 읽으면 안 된다 (#33).
+  // 접근은 src/platform/db.ts에서만. 로컬 실행은 Docker DB로 붙는다.
+  "hyperdrive": [
+    {
+      "binding": "HYPERDRIVE",
+      "id": "edbc6300c21044a9979ffd552053fe61",
+      "localConnectionString": "postgres://gmoim:gmoim_local_only@127.0.0.1:5432/gmoim"
+    }
+  ]
 }
